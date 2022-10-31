@@ -349,7 +349,13 @@
                     <a href="#get-all-workplaces" class="toc-h2 toc-link" data-title="Get All Workplaces">Get All Workplaces</a>
                   </li>
                   <li>
+                    <a href="#create-a-workplace" class="toc-h2 toc-link" data-title="Create a Workplace">Create a Workplace</a>
+                  </li>
+                  <li>
                     <a href="#get-a-specific-workplace" class="toc-h2 toc-link" data-title="Get a Specific Workplace">Get a Specific Workplace</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-workplace" class="toc-h2 toc-link" data-title="Update a Workplace">Update a Workplace</a>
                   </li>
                   <li>
                     <a href="#delete-a-specific-workplace" class="toc-h2 toc-link" data-title="Delete a Specific Workplace">Delete a Specific Workplace</a>
@@ -360,13 +366,19 @@
             <a href="#rotas" class="toc-h1 toc-link" data-title="Rotas">Rotas</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-workplaces" class="toc-h2 toc-link" data-title="Get All Workplaces">Get All Workplaces</a>
+                    <a href="#get-all-rotas" class="toc-h2 toc-link" data-title="Get All Rotas">Get All Rotas</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-workplace" class="toc-h2 toc-link" data-title="Get a Specific Workplace">Get a Specific Workplace</a>
+                    <a href="#create-a-rota" class="toc-h2 toc-link" data-title="Create a Rota">Create a Rota</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-workplace" class="toc-h2 toc-link" data-title="Delete a Specific Workplace">Delete a Specific Workplace</a>
+                    <a href="#get-a-specific-rota" class="toc-h2 toc-link" data-title="Get a Specific Rota">Get a Specific Rota</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-rota" class="toc-h2 toc-link" data-title="Update a Rota">Update a Rota</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-specific-rota" class="toc-h2 toc-link" data-title="Delete a Specific Rota">Delete a Specific Rota</a>
                   </li>
               </ul>
           </li>
@@ -374,13 +386,25 @@
             <a href="#employees" class="toc-h1 toc-link" data-title="Employees">Employees</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-workplaces" class="toc-h2 toc-link" data-title="Get All Workplaces">Get All Workplaces</a>
+                    <a href="#get-all-employees" class="toc-h2 toc-link" data-title="Get All Employees">Get All Employees</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-workplace" class="toc-h2 toc-link" data-title="Get a Specific Workplace">Get a Specific Workplace</a>
+                    <a href="#create-a-employee" class="toc-h2 toc-link" data-title="Create a Employee">Create a Employee</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-workplace" class="toc-h2 toc-link" data-title="Delete a Specific Workplace">Delete a Specific Workplace</a>
+                    <a href="#get-a-specific-employee" class="toc-h2 toc-link" data-title="Get a Specific Employee">Get a Specific Employee</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-employee" class="toc-h2 toc-link" data-title="Update a Employee">Update a Employee</a>
+                  </li>
+                  <li>
+                    <a href="#deactivate-an-employee" class="toc-h2 toc-link" data-title="Deactivate an Employee">Deactivate an Employee</a>
+                  </li>
+                  <li>
+                    <a href="#invite-an-employee" class="toc-h2 toc-link" data-title="Invite an Employee">Invite an Employee</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-specific-employee" class="toc-h2 toc-link" data-title="Delete a Specific Employee">Delete a Specific Employee</a>
                   </li>
               </ul>
           </li>
@@ -527,6 +551,12 @@ Remember — a happy kitten is an authenticated kitten!
 At the API level, A Rotaville Workforce is known as a <code>workplace</code>.
 This might change in a future version of the API. 
 </aside>
+
+<p>Please see the following videos and documentation for more details on workplace attributes.</p>
+
+<p>Documentation: <a href="https://rotaville.com/docs/workforce-settings">Workforce Settings</a></p>
+
+<p>Video: <a href="https://rotaville.com/help/advanced-workforce-settings">Advanced Workforce Settings</a></p>
 <h2 id='get-all-workplaces'>Get All Workplaces</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
 </code></pre></div>
@@ -557,29 +587,69 @@ This might change in a future version of the API.
 <p>This endpoint retrieves all workplaces in which the owner is a manager.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://rotaville.com/api5/owner/workplaces</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h2 id='create-a-workplace'>Create a Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"http://example.com/api5/owner/workplaces"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"name":"Family Care Inc.",\
+       "default_rota_name":"On Site",\
+       "skip_example_employees": true,\
+       "skip_example_shifts": true}
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family Care Inc."</span><span class="w">
+  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific workforce.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/owner/workplaces</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>name*</td>
+<td>The name of the workplace</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+<h3 id='special-body-parameters'>Special Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default_rota_name</td>
+<td>String</td>
+<td>A name for the default rota created for a new workplace</td>
+</tr>
+<tr>
+<td>default_rota_description</td>
+<td>String</td>
+<td>A description for the default rota created for a new workplace</td>
+</tr>
+<tr>
+<td>skip_example_employees</td>
+<td>Boolean</td>
+<td>set <code>true</code> to avoid example employees being created</td>
+</tr>
+<tr>
+<td>skip_example_shifts</td>
+<td>Boolean</td>
+<td>set <code>true</code> to avoid example shifts being added</td>
+</tr>
+</tbody></table>
 <h2 id='get-a-specific-workplace'>Get a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
 </code></pre></div>
@@ -592,12 +662,12 @@ Remember — a happy kitten is an authenticated kitten!
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
   </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves a specific workforce.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -609,6 +679,39 @@ Remember — a happy kitten is an authenticated kitten!
 <tr>
 <td>ID</td>
 <td>The ID of the workplace to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-workplace'>Update a Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"http://example.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"business_hours_start": 9, "business_hours_finish": 17 }
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to update a workplace</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PATCH http://rotaville.com/api5/owner/workplace/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the workplace to update</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-workplace'>Delete a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
@@ -628,10 +731,12 @@ Remember — a happy kitten is an authenticated kitten!
   </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<aside class="success">Workplace deletion is currently disabled in the API. Please use the UI.</aside>
+
 <p>This endpoint deletes a specific workplace.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -645,12 +750,17 @@ Remember — a happy kitten is an authenticated kitten!
 </tbody></table>
 
 <aside class="warning">Only workplaces "owned" by the api user can be deleted.</aside>
+
+<aside class="warning">WARNING: Deleting a workplace is PERMANENT. 
+There is no <em>undo</em>. All employees, all rotas, and all shifts (historical and future), 
+in the workplace will be permanently deleted.</aside>
 <h1 id='rotas'>Rotas</h1>
-<aside class="notice">
-At the API level, A Rotaville Workforce is known as a <code>workplace</code>.
-This might change in a future version of the API. 
-</aside>
-<h2 id='get-all-workplaces'>Get All Workplaces</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces"</span> <span class="se">\</span>
+<p>Please see the following videos and documentation for more details on rota attributes.</p>
+
+<p>Documentation: <a href="https://rotaville.com/docs/new-rota">Create a New Rota</a></p>
+
+<p>Video: <a href="https://rotaville.com/help/multiple-rotas">Multiple Rotas</a></p>
+<h2 id='get-all-rotas'>Get All Rotas</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces/1/rotas"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
 </code></pre></div>
 <blockquote>
@@ -658,70 +768,21 @@ This might change in a future version of the API.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
-    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On Site"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"our work rota"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
-    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On Call"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all workplaces in which the owner is a manager.</p>
+<p>This endpoint retrieves all rotas for the given workplace.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://rotaville.com/api5/owner/workplaces</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-workplace'>Get a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific workforce.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;ID&gt;</code></p>
+<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/rotas</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -730,30 +791,28 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the workplace to retrieve</td>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the rotas</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-workplace'>Delete a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
-</code></pre></div>
+<h2 id='create-a-rota'>Create a Rota</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"http://example.com/api5/owner/workplaces/1/rotas"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"name":"Holidays",\
+       "description": "Holidays and Sick Leave"}
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
-  </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Holidays"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Holidays and Sick Leave"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific workplace.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;ID&gt;</code></p>
+<p>This endpoint creates a specific rota.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/rotas</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -762,18 +821,134 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the rota</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name*</td>
+<td>The name of the rota</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-rota'>Get a Specific Rota</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api5/owner/workplaces/1/rotas/45"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KeepGoing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"our work rota"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific rota.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/rotas/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the rota</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the rota to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-rota'>Update a Rota</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"http://example.com/api5/owner/workplaces/2/rotas/123"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"description":"Attention to Detail" }
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Our Rota"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Attention to Detail"</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to update a rota</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PATCH http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/rotas/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the rota</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the rota to update</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-rota'>Delete a Specific Rota</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2/rotas/99"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unused Rota"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It's okay to delete me after Jan 1st 2024"</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes a specific workplace.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/rotas/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the rota</td>
+</tr>
+<tr>
 <td>ID</td>
 <td>The ID of the workplace to delete</td>
 </tr>
 </tbody></table>
 
-<aside class="warning">Only workplaces "owned" by the api user can be deleted.</aside>
+<aside class="warning">WARNING: Deleting a rota is PERMANENT. 
+There is no <em>undo</em>. All shifts (historical and future), 
+and all shift assignments, on the rota will also be deleted.</aside>
 <h1 id='employees'>Employees</h1>
-<aside class="notice">
-At the API level, A Rotaville Workforce is known as a <code>workplace</code>.
-This might change in a future version of the API. 
-</aside>
-<h2 id='get-all-workplaces'>Get All Workplaces</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces"</span> <span class="se">\</span>
+<p>Please see the following videos and documentation for more details on employee attributes.</p>
+
+<p>Documentation: <a href="https://rotaville.com/docs/new-rota">Create a New Employee</a></p>
+
+<p>Video: <a href="https://rotaville.com/help/multiple-rotas">Multiple Employees</a></p>
+
+<p>Video: <a href="https://rotaville.com/help/deactivate-or-delete-or-disconnect-employee">Deactivate, Delete, and Disconnect Employees.</a></p>
+<h2 id='get-all-employees'>Get All Employees</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces/1/rotas"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
 </code></pre></div>
 <blockquote>
@@ -781,70 +956,31 @@ This might change in a future version of the API.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stephen"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slots"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ss@examle.com"</span><span class="w">
+    </span><span class="nl">"is_manager"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="err">...</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robson"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"david_r@examle.com"</span><span class="w">
+    </span><span class="nl">"is_manager"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="err">...</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all workplaces in which the owner is a manager.</p>
+<p>This endpoint retrieves all employees for the given workplace.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://rotaville.com/api5/owner/workplaces</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-workplace'>Get a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
-  </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific workforce.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;ID&gt;</code></p>
+<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/employees</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -853,30 +989,35 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the workplace to retrieve</td>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employees</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-workplace'>Delete a Specific Workplace</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
-</code></pre></div>
+<h2 id='create-a-employee'>Create a Employee</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"http://example.com/api5/owner/workplaces/1/employees"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"first_name":"Stephen",\
+       "last_name": "Sloss",\
+       "email": "ss@example.com",\
+       "is_manager": true\
+      }
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maximum Hours"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"just another job"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"business_hours_finish"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stephen"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slots"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ss@examle.com"</span><span class="w">
+  </span><span class="nl">"is_manager"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="err">...</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific workplace.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;ID&gt;</code></p>
+<p>This endpoint creates a specific employee.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/employees</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -885,18 +1026,195 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name*</td>
+<td>The first name of the employee</td>
+</tr>
+<tr>
+<td>last_name*</td>
+<td>The last name of the employee</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-employee'>Get a Specific Employee</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api5/owner/workplaces/1/employees/45"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stephen"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slots"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ss@examle.com"</span><span class="w">
+  </span><span class="nl">"is_manager"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="err">....</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves a specific employee.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/employees/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the employee to retrieve</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-employee'>Update a Employee</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"http://example.com/api5/owner/workplaces/2/employees/123"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"description":"RA qualified" }
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"desription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RA qualified"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js@examle.com"</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to update an employee</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PATCH http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the employee to update</td>
+</tr>
+</tbody></table>
+<h2 id='deactivate-an-employee'>Deactivate an Employee</h2>
+<p>A special update to an employee record is to <em>deactivate</em> them. </p>
+
+<p>You can do this by updating the <code>active</code> attribue to <code>false</code>.</p>
+<h2 id='invite-an-employee'>Invite an Employee</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"http://example.com/api5/owner/workplaces/2/employees/123/invite_or_connect"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js@examle.com"</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"invited_at"</span><span class="p">:</span><span class="s2">"2022-10-31T10:10:04"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to send an invitation to an employee.</p>
+
+<p>Please see the following videos and documentation for more details on inviting and employee</p>
+
+<p>Video: <a href="https://rotaville.com/help/invite-users">Invite Users</a></p>
+
+<aside class="notice">Please do not invite an employee before their own 
+email address is fully configured and activated. 
+Sending an invitation email to a not-yet-existing email-address will cause 
+that email-adress to be automatically blocked from receiving further emails from us.
+</aside>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>PUT http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;ID&gt;/invite_or_connect</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>The ID of the employee to invite</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-employee'>Delete a Specific Employee</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/3/employees/70"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"workplace_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js@examle.com"</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes a specific employee.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;ID&gt;</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
 <td>ID</td>
 <td>The ID of the workplace to delete</td>
 </tr>
 </tbody></table>
 
-<aside class="warning">Only workplaces "owned" by the api user can be deleted.</aside>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+<aside class="warning">WARNING: Deleting an employee is PERMANENT. 
+There is no <em>undo</em>. All employee notes and shift assignments (historical and future), 
+for the employee will also be deleted.
+<br>
+It is recommended that an employee be <strong>DEACTIVATED</strong> instead of being deleted.
 </aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<h1 id='errors'>Errors</h1>
+<p>The Rotaville API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -914,15 +1232,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- The resource requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified resource could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
@@ -930,7 +1248,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>Gone -- The resource requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>418</td>
@@ -938,7 +1256,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many resources! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>

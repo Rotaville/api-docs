@@ -62,7 +62,7 @@ included with the request.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://rotaville.com/api5/session" \
+curl -X POST "https://rotaville.com/api5/session" \
   -H 'Content-Type: application/json'
   -d '{"email":"my@email.address","api_key":"API_KEY"}'
 ```
@@ -92,6 +92,18 @@ curl "api_endpoint_here" \
 To use the Rotaville API you need API KEY. You can request access to the Rotaville API and API KEY by contacting Rotaville Support.
 
 The API KEY can be used request a new session TOKEN.
+
+### HTTP Request
+
+`POST http://rotaville.com/api5/session`
+
+### Body Parameters
+
+Parameter | Description
+--------- | -----------
+email* | The email address of the Rotaville account
+api_key* | The Rotaville API_KEY
+
 
 After some period of time the session token will expire and a new token will be required.
 

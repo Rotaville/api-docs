@@ -330,6 +330,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#body-parameters" class="toc-h2 toc-link" data-title="Body Parameters">Body Parameters</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#owner-api-user" class="toc-h1 toc-link" data-title="Owner (API User)">Owner (API User)</a>
@@ -446,7 +454,7 @@ format and the header </p>
 <p>To authorize, first request a session token using your API key:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://rotaville.com/api5/session"</span> <span class="se">\</span>
+curl <span class="nt">-X</span> POST <span class="s2">"https://rotaville.com/api5/session"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span>
   <span class="nt">-d</span> <span class="s1">'{"email":"my@email.address","api_key":"API_KEY"}'</span>
 </code></pre></div>
@@ -474,6 +482,24 @@ curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
 <p>To use the Rotaville API you need API KEY. You can request access to the Rotaville API and API KEY by contacting Rotaville Support.</p>
 
 <p>The API KEY can be used request a new session TOKEN.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/session</code></p>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email*</td>
+<td>The email address of the Rotaville account</td>
+</tr>
+<tr>
+<td>api_key*</td>
+<td>The Rotaville API_KEY</td>
+</tr>
+</tbody></table>
 
 <p>After some period of time the session token will expire and a new token will be required.</p>
 

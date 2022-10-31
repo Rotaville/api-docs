@@ -33,7 +33,7 @@ We have language bindings in Shell! You can view code examples in the dark area 
 
 This API documentation page was created with [Slate](https://github.com/slatedocs/slate).
 
-# Restful JSON Api
+# Restful JSON API
 
 Most requests to, and responses from, the API are in JSON format. 
 

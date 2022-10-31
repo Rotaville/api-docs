@@ -9,6 +9,10 @@ toc_footers:
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - owner
+  - workplaces
+  - rotas
+  - employees
   - errors
 
 search: true
@@ -17,206 +21,85 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Rotaville API
+  - content: Documentation for the Rotaville API
+
 ---
 
 # Introduction
 
-Welcome to the Rotaville API! You can use our API to access Rotaville API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Rotaville API! You can use our API to access Rotaville API endpoints, which can get information your various workforces, rotas, and employees in your account.
 
 We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 This API documentation page was created with [Slate](https://github.com/slatedocs/slate).
 
+# Restful JSON Api
+
+Most requests to, and responses from, the API are in JSON format. 
+
+## Request Headers
+
+HTTP requests should include the header 
+
+`Accept: application/json`
+
+(or append the `.json` extenstion to the request URL).
+
+## Data format
+
+Data included with HTTP requests should be encoded in JSON 
+format and the header 
+
+`Content-Type: application/json`
+
+included with the request.
+
+
+
 # Authentication
 
-> To authorize, use this code:
+> To authorize, first request a session token using your API key:
 
-```ruby
-require 'kittn'
-
-api = Rotaville::APIClient.authorize!('meowmeowmeow')
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://rotaville.com/api5/session" \
+  -H 'Content-Type: application/json'
+  -d '{"email":"my@email.address","api_key":"API_KEY"}'
 ```
 
-```python
-import kittn
+> The above command returns JSON structured like this:
 
-api = kittn.authorize('meowmeowmeow')
+```json
+{
+  "success": true,
+  "token": "toKenTokenTOKen"
+}
 ```
+
+> where `toKenTokenTOKen` is your session token.
+
+> Subsequent requests to the API can use this code:
+
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Bearer toKenTokenTOKen"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `toKenTokenTOKen` with your session token.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+To use the Rotaville API you need API KEY. You can request access to the Rotaville API and API KEY by contacting Rotaville Support.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+The API KEY can be used request a new session TOKEN.
 
-Rotaville uses API keys to allow access to the API. You can register a new Rotaville API key at our [developer portal](http://example.com/developers).
+After some period of time the session token will expire and a new token will be required.
 
-Rotaville expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Rotaville expects for the TOKEN to be included in all subsequent API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: Bearer toKenTokenTOKen`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>toKenTokenTOKen</code> with your session token.
 </aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Rotaville::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Rotaville::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 

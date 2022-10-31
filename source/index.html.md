@@ -93,9 +93,11 @@ To use the Rotaville API you need API KEY. You can request access to the Rotavil
 
 The API KEY can be used request a new session TOKEN.
 
+
 ### HTTP Request
 
 `POST http://rotaville.com/api5/session`
+
 
 ### Body Parameters
 

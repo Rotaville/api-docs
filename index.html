@@ -371,6 +371,23 @@
               </ul>
           </li>
           <li>
+            <a href="#workforce-logo-avatar" class="toc-h1 toc-link" data-title="Workforce Logo (Avatar)">Workforce Logo (Avatar)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-workplace-avatar" class="toc-h2 toc-link" data-title="Get Workplace Avatar">Get Workplace Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#create-workplace-avatar" class="toc-h2 toc-link" data-title="Create Workplace Avatar">Create Workplace Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#update-workplace-avatar" class="toc-h2 toc-link" data-title="Update Workplace Avatar">Update Workplace Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#delete-workplace-avatar" class="toc-h2 toc-link" data-title="Delete Workplace Avatar">Delete Workplace Avatar</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#rotas" class="toc-h1 toc-link" data-title="Rotas">Rotas</a>
               <ul class="toc-list-h2">
                   <li>
@@ -413,6 +430,23 @@
                   </li>
                   <li>
                     <a href="#delete-a-specific-employee" class="toc-h2 toc-link" data-title="Delete a Specific Employee">Delete a Specific Employee</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#employee-photo-avatar" class="toc-h1 toc-link" data-title="Employee Photo (Avatar)">Employee Photo (Avatar)</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-workplace-avatar" class="toc-h2 toc-link" data-title="Get Workplace Avatar">Get Workplace Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#create-employee-avatar" class="toc-h2 toc-link" data-title="Create Employee Avatar">Create Employee Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#update-employee-avatar" class="toc-h2 toc-link" data-title="Update Employee Avatar">Update Employee Avatar</a>
+                  </li>
+                  <li>
+                    <a href="#delete-employee-avatar" class="toc-h2 toc-link" data-title="Delete Employee Avatar">Delete Employee Avatar</a>
                   </li>
               </ul>
           </li>
@@ -780,6 +814,167 @@ This might change in a future version of the API.
 <aside class="warning">WARNING: Deleting a workplace is PERMANENT. 
 There is no <em>undo</em>. All employees, all rotas, and all shifts (historical and future), 
 in the workplace will be permanently deleted.</aside>
+<h1 id='workforce-logo-avatar'>Workforce Logo (Avatar)</h1>
+<aside class="notice">
+At the API level, A Workforce Logo is known as a <code>workplace avatar</code>.
+This might change in a future version of the API. 
+</aside>
+
+<p>Please see the following videos and documentation for more details on workplace attributes.</p>
+
+<p>Documentation: <a href="https://rotaville.com/docs/workforce-logo">Upload Workforce Logo</a></p>
+<h2 id='get-workplace-avatar'>Get Workplace Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces/1/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#337D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint returns the avatar fields of the corresponding parent workplace. When no avatar exists a 404 status wil be returned.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the avatar</td>
+</tr>
+</tbody></table>
+<h2 id='create-workplace-avatar'>Create Workplace Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"http://rotaville.com/api5/owner/workplaces/1/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"data64":"`base64 -i logo.png`"}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#337D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates(uploads) a new workplace avatar. 
+The returned json data should be merged into parent workplace record.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the avatar</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data64*</td>
+<td>The image file (jpg or png) base64 encoded</td>
+</tr>
+</tbody></table>
+<h2 id='update-workplace-avatar'>Update Workplace Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"http://example.com/api5/owner/workplaces/2/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"data64":"`base64 -i new_logo.jpg`"}'</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#337D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to update/replace a workplace avatar
+The returned json data should be merged into parent workplace record.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PATCH http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the avatar</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-2'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data64*</td>
+<td>The image file (jpg or png) base64 encoded</td>
+</tr>
+</tbody></table>
+<h2 id='delete-workplace-avatar'>Delete Workplace Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2/avatar"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#147D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#998288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes the workplace avatar. 
+The returned json should be merged into the parent workplace record.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace with the avatar to delete</td>
+</tr>
+</tbody></table>
 <h1 id='rotas'>Rotas</h1>
 <p>Please see the following videos and documentation for more details on rota attributes.</p>
 
@@ -1239,6 +1434,179 @@ for the employee will also be deleted.
 <br>
 It is recommended that an employee be <strong>DEACTIVATED</strong> instead of being deleted.
 </aside>
+<h1 id='employee-photo-avatar'>Employee Photo (Avatar)</h1>
+<aside class="notice">
+At the API level, An Employee Photo is known as a <code>employee avatar</code>.
+This might change in a future version of the API. 
+</aside>
+<h2 id='get-workplace-avatar'>Get Workplace Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api4/owner/workforces/1/employees/5/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#337D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint returns the avatar fields of the corresponding parent employee. When no avatar exists a 404 status wil be returned.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;EMPLOYEE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>EMPLOYEE-ID</td>
+<td>The ID of the employee for the avatar</td>
+</tr>
+</tbody></table>
+<h2 id='create-employee-avatar'>Create Employee Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"http://rotaville.com/api5/owner/workplaces/1/employees/8/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"data64":"`base64 -i face.jpg`"}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#337D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#6D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint creates(uploads) a new employee avatar. 
+The returned json data should be merged into parent employee record.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST http://rotaville.com/api5/owner/workplaces/&lt;WORKPLACE-ID&gt;/employees/&lt;EMPLOYEE-ID&gt; avatar</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>EMPLOYEE-ID</td>
+<td>The ID of the employee for the avatar</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data64*</td>
+<td>The image file (jpg or png) base64 encoded</td>
+</tr>
+</tbody></table>
+<h2 id='update-employee-avatar'>Update Employee Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="s2">"http://rotaville.com/api5/owner/workplaces/2/employees/5/avatar"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"data64":"`base64 -i smiling.jpg`"}'</span>
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#237D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9D8288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint can be used to update/replace an employee avatar
+The returned json data should be merged into parent employee record.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PATCH http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;EMPLOYEE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>EMPLOYEE-ID</td>
+<td>The ID of the employee for the avatar</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-2'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data64*</td>
+<td>The image file (jpg or png) base64 encoded</td>
+</tr>
+</tbody></table>
+<h2 id='delete-employee-avatar'>Delete Employee Avatar</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://rotaville.com/api5/owner/workplaces/2/employees/9/avatar"</span> <span class="se">\</span>
+  <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer toKenTokenTOKen"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"avatar_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pic_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cpt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#347D89"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"base2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#A98288"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint deletes the employee avatar. 
+The returned json should be merged into the parent employee record.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE http://rotaville.com/api5/owner/workplace/&lt;WORKPLACE-ID&gt;/employees/&lt;EMPLOYEE-ID&gt;/avatar</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WORKPLACE-ID</td>
+<td>The ID of the workplace for the employee</td>
+</tr>
+<tr>
+<td>EMPLOYEE-ID</td>
+<td>The ID of the employee for the avatar</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The Rotaville API uses the following error codes:</p>
 

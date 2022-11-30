@@ -11,8 +11,10 @@ toc_footers:
 includes:
   - owner
   - workplaces
+  - workplace_avatar
   - rotas
   - employees
+  - employee_avatar
   - errors
 
 search: true
